@@ -1,0 +1,13 @@
+body{
+    background-color: green;
+}
+.myButtons{
+    display: block;
+    color: blue;
+    /* background-color: lightblue; */
+    font-size: 3em;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 10px;
+    border-style: none;
+}
