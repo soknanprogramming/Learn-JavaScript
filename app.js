@@ -147,13 +147,27 @@ app.patch('/books/:id', async (req, res) => {
             return res.status(404).send('Book not found');
         }
         
-        res.status(204).send('it updated soknan');
+        res.status(204).send();
     } catch (error) {
         console.error('Error updating book:', error);
         res.status(500).send('Internal Server Error');
     }
 });
 
+// get 3 books per page
+app.get('/books/page/:page', async (req, res) => {
+    try {
+        const page = parseInt(req.params.page, 10); 
+        const limit = 3;
+        const skip = (page - 1) * limit;
+
+        const books = await db.collection('test_books').find().skip(skip).limit(limit).toArray();
+        res.json(books);
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 
 initializeApp();
